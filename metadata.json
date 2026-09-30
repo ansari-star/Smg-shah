@@ -1,0 +1,6 @@
+{
+  "name": "StockView Garment ERP",
+  "description": "Garment manufacturing and cutting master inventory management system with stock matrix, size breakdown, design catalog, and MRP sticker generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
