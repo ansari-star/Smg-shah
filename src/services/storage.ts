@@ -59,7 +59,9 @@ export function saveLocalState(state: StoredState): void {
   }
 }
 
-```typescript
+      }
+      if (state.designs && state.designs.length > 0) {
+
 export function saveLocalState(state: StoredState): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -80,7 +82,7 @@ export function saveLocalState(state: StoredState): void {
   } catch (err) {
     console.error('Failed to save to localStorage:', err);
   }
-}
+}        
 
   }
 }
