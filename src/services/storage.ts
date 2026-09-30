@@ -40,15 +40,24 @@ export function getLocalState(): StoredState {
 export function saveLocalState(state: StoredState): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    // Trigger custom event so reactive components can sync if needed
     window.dispatchEvent(new Event('garment_erp_storage_updated'));
+
+    // Cloud Sync to Supabase
+    if (supabase) {
+      if (state.masters && state.masters.length > 0) {
+        supabase.from('masters').upsert(state.masters).then();
+      }
+      if (state.designs && state.designs.length > 0) {
+        supabase.from('designs').upsert(state.designs).then();
+      }
+      if (state.sizes && state.sizes.length > 0) {
+        supabase.from('sizes').upsert(state.sizes).then();
+      }
+    }
   } catch (err) {
     console.error('Failed to save to localStorage:', err);
   }
 }
-```[span_2](start_span)[span_2](end_span)
-
-Isko mita kar iski jagah yeh code paste kar dein:
 
 ```typescript
 export function saveLocalState(state: StoredState): void {
